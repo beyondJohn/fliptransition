@@ -1,0 +1,14 @@
+.flip{
+    transform: scaleX(1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+    transition: all 1s;   
+    width:150px;                   
+}
+.mytext{
+    position: absolute;
+    top:50px;
+    padding: 15px;
+    text-align: center;
+    font-weight: 700;
+}
