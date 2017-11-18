@@ -1,21 +1,48 @@
 (function () {
 
     document.getElementById("btn").addEventListener("click", flippic);
-    var back = false;
+
+    const myflip = document.getElementById("flip");
+    const myimg = document.getElementById("myimg");
+    const mytext = document.getElementById("mytext");
+
+    var cardback = false;
+    var complete = false;
     function flippic() {
-        var myimg = document.getElementById("flip");
-        myimg.setAttribute("style", "transform: scaleX(0)");
+        
+        if (cardback) {
+            myflip.setAttribute("style", "transform: scaleX(0)");
+            console.log("cardback fl if: ", cardback);
+        }
+        else {
+            myflip.setAttribute("style", "transform: scaleX(0)");
+            console.log("cardback fl else: ", cardback);
+        }
+        complete = false;
     }
 
     document.getElementById("flip").addEventListener("transitionend", function (event) {
-        console.log("complete");
-        var myimg = document.getElementById("myimg");
-        myimg.src = "./cardback.png";
-        var mytext = document.getElementById("mytext");
-        mytext.innerHTML = "Card Back";
-        mytext.style.left = "15px";
-        var myflip = document.getElementById("flip");
-        myflip.setAttribute("style", "transform: scaleX(1)");
+        if (!complete) {console.log("complete te: ", complete);
+            if (cardback) {console.log("cardback te: ", cardback);
+                myimg.src = "./cardfront.png";
+
+                mytext.innerHTML = "Card Front";
+                
+                myflip.setAttribute("style", "transform: scaleX(1)");
+                cardback = false;
+            }
+            else {
+                myimg.src = "./cardback.png";
+
+                mytext.innerHTML = "Card Back";
+                mytext.style.left = "15px";
+
+                myflip.setAttribute("style", "transform: scaleX(1)");
+                cardback = true;
+            }
+            complete = true;
+        }
+
     }, false);
 
 

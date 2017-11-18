@@ -1,11 +1,11 @@
-.flip{
+#flip{
     transform: scaleX(1);
     filter: FlipH;
     -ms-filter: "FlipH";
     transition: all 1s;   
     width:150px;                   
 }
-.mytext{
+#mytext{
     position: absolute;
     top:50px;
     padding: 15px;
