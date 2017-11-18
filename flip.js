@@ -8,25 +8,25 @@
 
     var cardback = false;
     var complete = false;
+    var activelyflipping = false;
+
     function flippic() {
-        
-        if (cardback) {
+
+        if (!activelyflipping) {
+
             myflip.setAttribute("style", "transform: scaleX(0)");
-            console.log("cardback fl if: ", cardback);
+            complete = false;
+            activelyflipping = true;
         }
-        else {
-            myflip.setAttribute("style", "transform: scaleX(0)");
-            console.log("cardback fl else: ", cardback);
-        }
-        complete = false;
     }
 
-    document.getElementById("flip").addEventListener("transitionend", function (event) {
-        if (!complete) {console.log("complete te: ", complete);
-            if (cardback) {console.log("cardback te: ", cardback);
+    myflip.addEventListener("transitionend", function (event) {
+        if (!complete) {
+            if (cardback) {
                 myimg.src = "./cardfront.png";
 
                 mytext.innerHTML = "Card Front";
+                mytext.style.color = "black";
                 
                 myflip.setAttribute("style", "transform: scaleX(1)");
                 cardback = false;
@@ -36,11 +36,13 @@
 
                 mytext.innerHTML = "Card Back";
                 mytext.style.left = "15px";
-
+                mytext.style.color = "white";
+                myflip.setAttribute("style", "transform: scaleX(-1)");
                 myflip.setAttribute("style", "transform: scaleX(1)");
                 cardback = true;
             }
             complete = true;
+            activelyflipping = false;
         }
 
     }, false);
